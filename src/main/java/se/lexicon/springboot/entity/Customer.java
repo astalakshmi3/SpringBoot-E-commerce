@@ -13,7 +13,7 @@ import java.time.Instant;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table (name = "customers", uniqueConstraints = { @UniqueConstraint(name = "customer_email", columnNames = "email")})
+@Table (name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +27,11 @@ public class Customer {
     @Column (nullable = false, updatable = false)
     private Instant createdAt;
 
-    @OneToOne (fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn (name = "address_id", nullable = false)
     private  Address address;
 
-    @OneToOne (fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn (name = "user_profile_id")
     private   UserProfile userProfile;
 
