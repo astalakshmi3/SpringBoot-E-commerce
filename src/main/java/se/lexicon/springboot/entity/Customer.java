@@ -27,11 +27,11 @@ public class Customer {
     @Column (nullable = false, updatable = false)
     private Instant createdAt;
 
-    @OneToOne
+    @OneToOne (fetch = FetchType.LAZY, optional = false,cascade = CascadeType.ALL)
     @JoinColumn (name = "address_id", nullable = false)
     private  Address address;
 
-    @OneToOne
+    @OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn (name = "user_profile_id")
     private   UserProfile userProfile;
 
