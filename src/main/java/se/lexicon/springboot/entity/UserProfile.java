@@ -3,6 +3,8 @@ package se.lexicon.springboot.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import static jakarta.persistence.FetchType.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,8 +25,9 @@ public class UserProfile {
     @Column (nullable = false, length = 500)
     private String bio;
 
-    @OneToOne (mappedBy = "userProfile")
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    //Bidirectional
+    @OneToOne (mappedBy = "userProfile", fetch = FetchType.LAZY)
+    @JoinColumn (name = "customer_id")
+    private  Customer customer;
 
 }
