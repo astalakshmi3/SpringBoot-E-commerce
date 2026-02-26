@@ -27,7 +27,7 @@ public class Promotion {
     @Column (nullable = false)
     private LocalDate endDate;
 
-    // Bidirection al
+    // Bidirection
     @ManyToMany (mappedBy = "promotions", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<>();
 }
