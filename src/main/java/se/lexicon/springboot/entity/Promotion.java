@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,4 +26,8 @@ public class Promotion {
     private LocalDate startDate;
     @Column (nullable = false)
     private LocalDate endDate;
+
+    // Bidirection al
+    @ManyToMany (mappedBy = "promotions", fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<>();
 }

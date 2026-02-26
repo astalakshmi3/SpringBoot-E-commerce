@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 @Entity
 @Table (name = "order_items")
 public class OrderItem {
@@ -21,8 +22,13 @@ public class OrderItem {
     @Column (nullable = false)
     private BigDecimal priceAtPurchase;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn (name = "order_id", nullable = false)
+    // Order to OrderItem (Bidirectional)
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "order_id")
     private Order order;
 
+
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "product_id")
+    private Product product;
 }

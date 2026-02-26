@@ -20,6 +20,7 @@ public class Category {
     @Column (nullable = false, length = 100)
     private String name;
 
+    // Category to Products (bidirectional)
     @OneToMany (mappedBy = "category", fetch = FetchType.LAZY)
     private List <Product> products = new ArrayList<>();
 }
