@@ -18,4 +18,5 @@ public interface ProductRepository extends JpaRepository <Product, Long> {
     List<Product> findByOrderByPriceDesc();
     long countByCategory_Name(String categoryName);
     List<Product> findByCategoryId (Long categoryId);
+    boolean existsByNameIgnoreCaseAndCategory_NameIgnoreCase(String productName, String categoryName);
 }

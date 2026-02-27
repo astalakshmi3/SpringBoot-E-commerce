@@ -11,6 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
+@Builder
 @Entity
 @Table (name = "categories")
 public class Category {
