@@ -10,21 +10,26 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+@ToString(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table (name = "promotions")
 public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
     @Column(length = 100)
+    @ToString.Include
     private String code;
     @Column (nullable = false)
+    @ToString.Include
     private LocalDate startDate;
     @Column (nullable = false)
+    @ToString.Include
     private LocalDate endDate;
 
     // Bidirection

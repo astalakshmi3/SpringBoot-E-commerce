@@ -8,7 +8,8 @@ import java.util.List;
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 List<UserProfile> findByNicknameIgnoreCase (String nickname);
 List<UserProfile> findByPhoneNumberIgnoreCase (String phoneNumber);
-List<UserProfile> findByBioEmpty();
+
+List<UserProfile> findByBioIsNotNull();
 List<UserProfile> findByNicknameStartingWithIgnoreCase (String prefix);
 long countByPhoneNumberStartingWith(String prefix);
 }
