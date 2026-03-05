@@ -15,8 +15,8 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     // active on date
     @Query ("SELECT p FROM Promotion p WHERE p.startDate <= :date AND (p.endDate IS NULL OR p.endDate>=:date)")
     List<Promotion> findByDate (@Param("date") Instant date);
+    Optional<Promotion> findByCodeIgnoreCase(@Param("code") String code);
 
-    Optional<Promotion> findByCode(@Param("code") String code);
     List<Promotion> findByStartDateAfter (LocalDate date);
     List<Promotion> findByEndDateBefore (LocalDate date);
     List<Promotion> findByEndDateIsNull ();

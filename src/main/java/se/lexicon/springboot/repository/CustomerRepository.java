@@ -12,14 +12,14 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> findByEmail (String email);
+    Optional<Customer> findByEmailIgnoreCase (String email);
     List<Customer> findByLastNameIgnoreCase(String lastName);
     List<Customer> findByAddressCityIgnoreCase (String city);
 
     List<Customer> findByEmailContainingIgnoreCase (String keyword );
-    List<Customer> findByCreatedAtAfter(Instant date);
+    List<Customer> findByCreatedAtAfter(Instant dateTime);
     List<Customer> findByCreatedAtBetween(Instant start, Instant end);
     long countByAddressCityIgnoreCase (String city);
-    boolean existsByEmail (String email);
+    boolean existsByEmailIgnoreCase (String email);
 
 }

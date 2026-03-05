@@ -9,17 +9,21 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table (name = "order_items")
 public class OrderItem {
     @Id
     @GeneratedValue (strategy =  GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long Id;
     @Column (nullable = false)
+    @ToString.Include
     private Integer quantity;
-    @Column (nullable = false)
+    @Column (nullable = false, precision = 10, scale = 2)
+    @ToString.Include
     private BigDecimal priceAtPurchase;
 
     // Order to OrderItem (Bidirectional)

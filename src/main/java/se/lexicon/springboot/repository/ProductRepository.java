@@ -13,10 +13,10 @@ public interface ProductRepository extends JpaRepository <Product, Long> {
     List<Product> findByPriceBetween(BigDecimal low, BigDecimal high);
 
     List<Product> findByNameContainsIgnoreCase(String keyword);
-    List<Product> findByPriceLessThan (BigDecimal price);
+    List<Product> findByPriceLessThan (BigDecimal max);
     List<Product> findByOrderByPriceAsc();
     List<Product> findByOrderByPriceDesc();
-    long countByCategory_Name(String categoryName);
+    long countByCategory_NameIgnoreCase (String categoryName);
     List<Product> findByCategoryId (Long categoryId);
     boolean existsByNameIgnoreCaseAndCategory_NameIgnoreCase(String productName, String categoryName);
 }
