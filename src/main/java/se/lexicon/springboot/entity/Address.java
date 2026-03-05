@@ -28,4 +28,8 @@ public class Address {
     @ToString.Include
     private String zipCode;
 
+    public String getFullAddress()
+    {
+        return String.format("%s, %s %s", street, zipCode, city);
+    }
 }

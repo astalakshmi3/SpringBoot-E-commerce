@@ -14,7 +14,7 @@ public class CustomerMapper {
                 customer.getId(),
                 customer.getFirstName() + " " + customer.getLastName(),
                 customer.getEmail(),
-                customer.getAddress()
+                customer.getAddress().getFullAddress()
         );
     }
     public Customer toEntity(CustomerRequest customerRequest) {
