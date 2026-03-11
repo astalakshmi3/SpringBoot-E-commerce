@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import org.springdoc.core.data.DataRestResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import se.lexicon.springboot.dto.request.CustomerRequest;
 import se.lexicon.springboot.dto.response.CustomerResponse;
 import se.lexicon.springboot.entity.Customer;
 import se.lexicon.springboot.service.CustomerService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -30,14 +33,24 @@ public class CustomerController {
     @Operation (summary = "Register the customer information")
     @Tag(name = "Customer Registration")
     public ResponseEntity<CustomerResponse> register (@Valid @RequestBody CustomerRequest customerRequest) {
+        System.out.println("Request body =" + customerRequest);
         CustomerResponse createdCustomer = customerService.register( customerRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
+        System.out.println("Created customer ==> " + createdCustomer);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(createdCustomer);
     }
 
     @GetMapping ("/{id}")
     @Operation (summary = "Find by Customer ID")
     @Tag(name = "Customer ID")
     public ResponseEntity<CustomerResponse> findById (@PathVariable @Positive Long id) {
-        return  ResponseEntity.ok(customerService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.findById(id));
     }
+
+   @PutMapping ("/{id}")
+    public ResponseEntity<CustomerResponse> update (@PathVariable @Positive Long id,@Valid @RequestBody CustomerRequest customerRequest) {
+        CustomerResponse updatedCustomer = customerService.update(id, customerRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedCustomer);
+   }
 }

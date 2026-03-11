@@ -3,6 +3,7 @@ package se.lexicon.springboot.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -24,13 +25,18 @@ public class Promotion {
     private Long id;
     @Column(length = 100)
     @ToString.Include
-    private String code;
+    private String name;
+    @ToString.Include
+    private BigDecimal discountPercentage;
     @Column (nullable = false)
     @ToString.Include
     private LocalDate startDate;
     @Column (nullable = false)
     @ToString.Include
     private LocalDate endDate;
+    @ToString.Include
+    @EqualsAndHashCode.Include
+    private boolean active;
 
     // Bidirection
     @ManyToMany (mappedBy = "promotions", fetch = FetchType.LAZY)
