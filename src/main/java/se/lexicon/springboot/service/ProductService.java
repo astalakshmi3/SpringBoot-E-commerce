@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ProductService {
     @Transactional
-    ProductResponse createProduct(ProductRequest productRequest);
+    ProductResponse create(ProductRequest productRequest);
 
-    ProductResponse createProduct(ProductResponse productResponse);
-    List<ProductResponse> findAllProducts();
-    List<ProductResponse> findProductsByName(String name);
+    ProductResponse create(ProductResponse productResponse);
+    List<ProductResponse> findAll();
+    List<ProductResponse> findByName(String name);
 }

@@ -28,7 +28,7 @@ public class ProductServiceImpl implements  ProductService {
 
     @Override
     @Transactional
-    public ProductResponse createProduct(ProductRequest productRequest) {
+    public ProductResponse create(ProductRequest productRequest) {
         Category category = categoryRepository.findById(productRequest.categoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Category not found: " + productRequest.categoryId()));
 
@@ -38,14 +38,14 @@ public class ProductServiceImpl implements  ProductService {
      }
 
     @Override
-    public ProductResponse createProduct(ProductResponse productResponse) {
+    public ProductResponse create(ProductResponse productResponse) {
         return null;
     }
 
 
     @Override
     @Transactional
-    public List<ProductResponse> findAllProducts() {
+    public List<ProductResponse> findAll() {
         return productRepository.findAll().stream()
                 .map(ProductMapper::toProductResponse)
                 .toList();
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements  ProductService {
 
     @Override
     @Transactional
-    public List<ProductResponse> findProductsByName(String name) {
+    public List<ProductResponse> findByName(String name) {
         return productRepository.findByCategoryNameIgnoreCase(name).stream()
                 .map(ProductMapper::toProductResponse)
                 .toList();
