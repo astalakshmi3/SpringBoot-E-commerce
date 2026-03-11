@@ -1,0 +1,16 @@
+### Create Customer
+GET http://localhost:8080/api/v1/customers
+Accept: application/json
+
+### Create Customer
+POST http://localhost:8080/api/v1/customers
+Content-Type: application/json
+
+{
+"firstName " : "Asta",
+"lastName" : "Muralidharan",
+"email" : "Asta@gmail.com"
+}
+
+### Get customer by ID
+GET http://localhost:8080/api/v1/customers/1

@@ -7,9 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public record OrderRequest(
-            @NotNull
+            @NotNull (message = "Customer id is required")
             Long customerId,
-            @NotEmpty
+            @NotEmpty (message = "Order must contain")
             List<OrderItemRequest> orderItems
 ) {
     public record OrderItemRequest(
